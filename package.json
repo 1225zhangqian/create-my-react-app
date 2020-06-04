@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "create-my-react-app": "./bin/react-scripts.js"
+    "create-my-react-app": "./bin/createApp.js"
   },
   "author": "Lucy",
   "license": "ISC",
