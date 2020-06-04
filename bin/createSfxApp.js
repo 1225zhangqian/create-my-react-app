@@ -117,7 +117,7 @@ createApp(projectName, program.scriptsVersion);
 
 function createApp(projectName) {
     // https://github.com/1225zhangqian/create-my-react-app?version=master&path=packages/sfx-template
-    const scriptsPath = `${packageJson.repository.url}version=master&path=packages/sfx-template/${scriptsFileName}`
+    const scriptsPath = `${packageJson.repository.url}?version=master&path=packages/sfx-template/${scriptsFileName}`
 
     // Now run the CRA command
     cp.execSync(
