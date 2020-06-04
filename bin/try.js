@@ -93,10 +93,10 @@ console.log('Do not edit any package.json while this task is running.');
 // from execSync(). In this case it will be the .tgz filename.
 // https://mysite.com/my-custom-template-0.8.2.tgz
 const scriptsFileName = cp
-    .execSync(`npm pack`, { cwd: path.join(packagesDir, 'react-scripts') })
+    .execSync(`npm pack`, { cwd: path.join(packagesDir, 'sfx-template') })
     .toString()
     .trim();
-const scriptsPath = path.join(packagesDir, 'react-scripts', scriptsFileName);
+const scriptsPath = path.join(packagesDir, 'sfx-template', scriptsFileName);
 
 // Now that we have packed them, call the global CLI.
 cp.execSync('yarn cache clean');
@@ -105,13 +105,15 @@ const args = process.argv.slice(2);
 
 // Now run the CRA command
 const craScriptPath = path.join(packagesDir, 'create-react-app', 'index.js');
-cp.execSync(
-    `node ${craScriptPath} ${args.join(' ')} --scripts-version="${scriptsPath}"`,
-    {
-        cwd: rootDir,
-        stdio: 'inherit',
-    }
-);
+console.log(craScriptPath)
+console.log(scriptsPath)
+// cp.execSync(
+//     `node ${craScriptPath} ${args.join(' ')} --scripts-version="${scriptsPath}"`,
+//     {
+//         cwd: rootDir,
+//         stdio: 'inherit',
+//     }
+// );
 
 // Cleanup
 handleExit();
