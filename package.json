@@ -1,5 +1,5 @@
 {
-  "name": "create-sfx-app",
+  "name": "create-my-react-app",
   "version": "1.0.0",
   "description": "Create SFx React apps with no build configuration.",
   "scripts": {
@@ -12,8 +12,8 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://dev.azure.com/hexagonsf/platform/_git/Genesis",
-    "directory": "create-sfx-app"
+    "url": "https://github.com/1225zhangqian/create-my-react-app",
+    "directory": "create-my-react-app"
   },
   "dependencies": {
     "download-git-repo": "^1.1.0",
