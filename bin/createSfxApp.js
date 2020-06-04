@@ -119,7 +119,7 @@ createApp(projectName, program.scriptsVersion);
 function createApp(projectName) {
     // Now run the CRA command
     cp.execSync(
-        `npx create-react-app ${projectName} --template "${scriptsPath}"`,
+        `npx create-react-app ${projectName} --scripts-version="${scriptsPath}"`,
         {
             cwd: rootDir,
             stdio: 'inherit',
