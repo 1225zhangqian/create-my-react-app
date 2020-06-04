@@ -61,3 +61,6 @@ if (gitStatus.trim() !== '') {
     process.exit(1);
 }
 require('./createSfxApp.js');
+
+// Cleanup
+handleExit();

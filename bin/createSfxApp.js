@@ -51,7 +51,6 @@ const scriptsFileName = cp
     .execSync(`npm pack`, { cwd: path.join(packagesDir, 'sfx-template') })
     .toString()
     .trim();
-const scriptsPath = path.join(packagesDir, 'sfx-template', scriptsFileName);
 
 // Now that we have packed them, call the global CLI.
 cp.execSync('yarn cache clean');
@@ -117,15 +116,14 @@ if (typeof projectName === 'undefined') {
 createApp(projectName, program.scriptsVersion);
 
 function createApp(projectName) {
+    const scriptsPath = `${packageJson.repository.url}/master/packages/sfx-template/${scriptsFileName}`
+
     // Now run the CRA command
     cp.execSync(
-        `npx create-react-app ${projectName} --template "https://raw.githubusercontent.com/1225zhangqian/create-my-react-app/master/create-my-react-app-1.0.2.tgz"`,
+        `npx create-react-app ${projectName} --template "${scriptsPath}"`,
         {
             cwd: rootDir,
             stdio: 'inherit',
         }
     );
 }
-
-// Cleanup
-handleExit();
