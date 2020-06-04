@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const path = require('path');
 const cp = require('child_process');
 const packageJson = require('../package.json');
