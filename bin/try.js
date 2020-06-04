@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// https://mysite.com/my-custom-template-0.8.2.tgz
+
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
@@ -91,6 +91,7 @@ console.log('Do not edit any package.json while this task is running.');
 // Finally, pack react-scripts.
 // Don't redirect stdio as we want to capture the output that will be returned
 // from execSync(). In this case it will be the .tgz filename.
+// https://mysite.com/my-custom-template-0.8.2.tgz
 const scriptsFileName = cp
     .execSync(`npm pack`, { cwd: path.join(packagesDir, 'react-scripts') })
     .toString()
