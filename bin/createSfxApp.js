@@ -116,7 +116,8 @@ if (typeof projectName === 'undefined') {
 createApp(projectName, program.scriptsVersion);
 
 function createApp(projectName) {
-    const scriptsPath = `https://raw.githubusercontent.com/1225zhangqian/create-my-react-app/master/packages/sfx-template/${scriptsFileName}`
+    // https://github.com/1225zhangqian/create-my-react-app?version=master&path=packages/sfx-template
+    const scriptsPath = `${packageJson.repository.url}version=master&path=packages/sfx-template/${scriptsFileName}`
 
     // Now run the CRA command
     cp.execSync(
