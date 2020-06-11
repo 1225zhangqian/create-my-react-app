@@ -110,4 +110,4 @@ function createApp(projectName) {
 
 }
 
-module.exports = createApp(projectName);
+createApp(projectName)
