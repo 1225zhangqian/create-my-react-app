@@ -108,16 +108,7 @@ function createApp(projectName) {
             JSON.stringify(packageJson, null, 2) + os.EOL
         );
     })
-    install(root)
 
 }
 
-function install(root) {
-    cp.execSync(
-        `cd ${root}`
-    );
-    cp.execSync(
-        `npm install`
-    );
-}
 module.exports = createApp(projectName)
