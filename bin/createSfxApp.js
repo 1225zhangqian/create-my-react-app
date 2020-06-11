@@ -4,43 +4,12 @@ const cp = require('child_process');
 const packageJson = require('../package.json');
 const chalk = require('chalk');
 const commander = require('commander');
+const unpack = require('tar-pack').unpack;
+const os = require('os');
 
 const rootDir = path.join(__dirname, '..');
-const packagesDir = path.join(rootDir, 'packages');
-const packagePathsByName = {};
-fs.readdirSync(packagesDir).forEach(name => {
-    const packageDir = path.join(packagesDir, name);
-    const packageJson = path.join(packageDir, 'package.json');
-    if (fs.existsSync(packageJson)) {
-        packagePathsByName[name] = packageDir;
-    }
-});
-Object.keys(packagePathsByName).forEach(name => {
-    const packageJson = path.join(packagePathsByName[name], 'package.json');
-    const json = JSON.parse(fs.readFileSync(packageJson, 'utf8'));
-    Object.keys(packagePathsByName).forEach(otherName => {
-        if (json.dependencies && json.dependencies[otherName]) {
-            json.dependencies[otherName] = 'file:' + packagePathsByName[otherName];
-        }
-        if (json.devDependencies && json.devDependencies[otherName]) {
-            json.devDependencies[otherName] = 'file:' + packagePathsByName[otherName];
-        }
-        if (json.peerDependencies && json.peerDependencies[otherName]) {
-            json.peerDependencies[otherName] =
-                'file:' + packagePathsByName[otherName];
-        }
-        if (json.optionalDependencies && json.optionalDependencies[otherName]) {
-            json.optionalDependencies[otherName] =
-                'file:' + packagePathsByName[otherName];
-        }
-    });
+const packagesDir = path.join(rootDir, 'sfx-template');
 
-    fs.writeFileSync(packageJson, JSON.stringify(json, null, 2), 'utf8');
-    console.log(
-        'Replaced local dependencies in packages/' + name + '/package.json'
-    );
-});
-console.log('Replaced all local dependencies for testing.');
 console.log('Do not edit any package.json while this task is running.');
 
 // Finally, pack react-scripts.
@@ -48,13 +17,12 @@ console.log('Do not edit any package.json while this task is running.');
 // from execSync(). In this case it will be the .tgz filename.
 // https://mysite.com/my-custom-template-0.8.2.tgz
 const scriptsFileName = cp
-    .execSync(`npm pack`, { cwd: path.join(packagesDir, 'sfx-template') })
+    .execSync(`npm pack`, { cwd: path.join(packagesDir, 'template') })
     .toString()
     .trim();
-
+const scriptsPath = path.join(packagesDir, 'template', scriptsFileName);
 // Now that we have packed them, call the global CLI.
 cp.execSync('yarn cache clean');
-
 
 // Now run the CRA command
 
@@ -113,18 +81,33 @@ if (typeof projectName === 'undefined') {
     process.exit(1);
 }
 
-createApp(projectName, program.scriptsVersion);
 
 function createApp(projectName) {
-    // https://github.com/1225zhangqian/create-my-react-app?version=master&path=create-my-react-app-1.0.2.tgz
-    const scriptsPath = `https://github.com/1225zhangqian/create-my-react-app/raw/master/create-my-react-app-1.0.2.tgz`
+    const root = path.resolve(projectName);
+    const appName = path.basename(root);
+    console.log(`Creating a new React app in ${chalk.green(root)}.`);
+    const packageJson = {
+        name: appName,
+    };
 
-    // Now run the CRA command
-    cp.execSync(
-        `npx create-react-app ${projectName} --template "${scriptsPath}"`,
-        {
-            cwd: rootDir,
-            stdio: 'inherit',
+    fs.mkdir(projectName, function (error) {
+        if (error) {
+            console.log(error);
+            return false;
         }
-    );
+    })
+
+    fs.createReadStream(scriptsPath).pipe(unpack(root)).on('error', function (err) {
+        console.error(err.stack)
+    }).on('close', function () {
+        const json = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+        fs.writeFileSync(
+            path.join(root, 'package.json'),
+            JSON.stringify({ ...json, ...packageJson }, null, 2) + os.EOL
+        );
+    })
+
+
 }
+
+module.exports = createApp(projectName);

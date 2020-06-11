@@ -1,0 +1,104 @@
+.IS-notification {
+  position: fixed;
+  z-index: 9999;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  margin-right: 24px;
+  color: rgba(0, 0, 0, 0.65); }
+  .IS-notification-notice {
+    position: relative;
+    margin-bottom: 16px;
+    overflow: hidden;
+    line-height: 1.5;
+    background: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+    .IS-notification-notice-close {
+      position: absolute;
+      top: 16px;
+      right: 22px;
+      color: rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      outline: none; }
+    .IS-notification-notice-content {
+      padding: 16px 24px; }
+    .IS-notification-notice-message {
+      display: inline-block;
+      padding-right: 24px;
+      margin-bottom: 8px;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 16px;
+      line-height: 24px; }
+    .IS-notification-notice-description {
+      font-size: 14px; }
+    .IS-notification-notice-with-icon .IS-notification-notice-message,
+    .IS-notification-notice-with-icon .IS-notification-notice-description {
+      margin-bottom: 4px;
+      margin-left: 48px;
+      font-size: 16px; }
+    .IS-notification-notice-icon {
+      position: absolute;
+      margin-left: 4px;
+      height: 24px;
+      width: 24px;
+      font-size: 24px;
+      line-height: 24px; }
+    .IS-notification-notice-with-success {
+      color: #fff;
+      background-color: #52c41a; }
+      .IS-notification-notice-with-success .IS-notification-notice-message {
+        color: #fff; }
+    .IS-notification-notice-with-warning {
+      color: #333;
+      background-color: #faad14; }
+      .IS-notification-notice-with-warning .IS-notification-notice-message {
+        color: #333; }
+    .IS-notification-notice-with-error {
+      color: #fff;
+      background-color: #f5222d; }
+      .IS-notification-notice-with-error .IS-notification-notice-message {
+        color: #fff; }
+  .IS-notification-notice-fade {
+    animation-duration: 3s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite; }
+  .IS-notification-topRight .IS-notification-notice-bouncein-enter, .IS-notification-bottomRight .IS-notification-notice-bouncein-enter {
+    animation-name: NotificationFadeIn;
+    animation-play-state: running; }
+  .IS-notification-topLeft .IS-notification-notice-bouncein-enter, .IS-notification-bottomLeft .IS-notification-notice-bouncein-enter {
+    animation-name: NotificationLeftFadeIn;
+    animation-play-state: running; }
+  .IS-notification-notice-fadeout {
+    animation-name: NotificationFadeOut;
+    animation-play-state: running; }
+
+@keyframes NotificationFadeIn {
+  0% {
+    opacity: 0;
+    left: 320px; }
+  100% {
+    left: 0;
+    opacity: 1; } }
+
+@keyframes NotificationLeftFadeIn {
+  0% {
+    opacity: 0;
+    right: 320px; }
+  100% {
+    right: 0;
+    opacity: 1; } }
+
+@keyframes NotificationFadeOut {
+  0% {
+    opacity: 1;
+    margin-bottom: 16px;
+    padding-top: 16px 24px;
+    padding-bottom: 16px 24px;
+    max-height: 150px; }
+  100% {
+    opacity: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-height: 0; } }
