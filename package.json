@@ -1,6 +1,6 @@
 {
   "name": "create-qian-react-app",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Create SFx React apps with no build configuration.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,12 +16,12 @@
     "directory": "create-my-react-app"
   },
   "dependencies": {
-    "download-git-repo": "^1.1.0",
-    "ora": "^3.2.0",
     "chalk": "4.0.0",
     "commander": "4.1.0",
-    "inquirer": "7.1.0",
+    "download-git-repo": "^1.1.0",
     "hyperquest": "2.1.3",
+    "inquirer": "7.1.0",
+    "ora": "^3.2.0",
     "tar-pack": "3.4.1",
     "tmp": "0.2.1"
   }

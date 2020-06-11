@@ -87,7 +87,7 @@ function createApp(projectName) {
     const root = path.resolve(projectName);
     const appName = path.basename(root);
     console.log(`Creating a new React app in ${chalk.green(root)}.`);
-    const packageJson = {
+    let packageJson = {
         name: appName,
     };
 
@@ -102,13 +102,22 @@ function createApp(projectName) {
         console.error(err.stack)
     }).on('close', function () {
         const json = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+        packageJson = { ...json, ...packageJson }
         fs.writeFileSync(
             path.join(root, 'package.json'),
-            JSON.stringify({ ...json, ...packageJson }, null, 2) + os.EOL
+            JSON.stringify(packageJson, null, 2) + os.EOL
         );
     })
-
+    install(root)
 
 }
 
+function install(root) {
+    cp.execSync(
+        `cd ${root}`
+    );
+    cp.execSync(
+        `npm install`
+    );
+}
 module.exports = createApp(projectName)
