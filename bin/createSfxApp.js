@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
@@ -110,4 +111,4 @@ function createApp(projectName) {
 
 }
 
-createApp(projectName)
+module.exports = createApp(projectName)
