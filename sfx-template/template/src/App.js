@@ -50,6 +50,8 @@ function App() {
             React Redux
           </a>
         </span>
+
+        try to do something to update the changelog
       </header>
     </div>
   );

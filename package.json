@@ -3,7 +3,8 @@
   "version": "1.0.14",
   "description": "Create SFx React apps with no build configuration.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "standard-version"
   },
   "bin": {
     "create-qian-react-app": "./bin/createSfxApp.js"
@@ -23,5 +24,8 @@
     "tar-pack": "3.4.1",
     "tmp": "0.2.1",
     "envinfo": "7.5.1"
+  },
+  "devDependencies": {
+    "standard-version": "^8.0.0"
   }
 }
