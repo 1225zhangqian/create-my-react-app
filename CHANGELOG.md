@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/1225zhangqian/create-my-react-app/compare/v1.0.19...v2.0.0) (2020-06-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **app.js:** Verify that the function is valid
+
+### Features
+
+* **app.js:** update app.js ([e75564f](https://github.com/1225zhangqian/create-my-react-app/commit/e75564f9cce43b325f638b21bc4abd1ff35350da))
+
 ### [1.0.19](https://github.com/1225zhangqian/create-my-react-app/compare/v1.0.18...v1.0.19) (2020-06-23)
 
 
